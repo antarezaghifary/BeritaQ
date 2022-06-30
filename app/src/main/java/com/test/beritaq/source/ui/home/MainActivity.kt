@@ -32,12 +32,12 @@ class MainActivity : AppCompatActivity() {
         CategoryAdapter(viewModel.kategories, object : CategoryAdapter.OnAdapterListener {
             @SuppressLint("LogNotTimber")
             override fun onClick(category: CategoryModel) {
-                Log.e("TAG", "onClick: ${category.id}")
+                viewModel.detailKategori.postValue(category.id)
             }
-
         })
     }
 
+    @SuppressLint("LogNotTimber")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
@@ -45,5 +45,19 @@ class MainActivity : AppCompatActivity() {
 
         bindingToolbar.tvTitle.text = viewModel.title
         binding.listCategory.adapter = categoryAdapter
+
+        viewModel.detailKategori.observe(this) {
+            Log.e("TAG", "detail kategori: ${it}")
+        }
+
+        viewModel.berita.observe(this) {
+            Log.e("TAG", "data berita: ${it.article}")
+        }
+
+        viewModel.pesan.observe(this) {
+            it?.let {
+                Log.e("TAG", "Pesan: ${it}")
+            }
+        }
     }
 }
