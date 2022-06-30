@@ -1,4 +1,4 @@
-package com.test.beritaq.source.ui.detail
+package com.test.beritaq.ui.detail
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

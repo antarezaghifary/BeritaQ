@@ -1,4 +1,4 @@
-package com.test.beritaq.source.ui.home
+package com.test.beritaq.ui.home
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -29,6 +29,10 @@ class MainViewModel(
         MutableLiveData<String>()
     }
 
+    val loading by lazy {
+        MutableLiveData<Boolean>()
+    }
+
     val berita by lazy {
         MutableLiveData<BeritasResponse>()
     }
@@ -36,18 +40,19 @@ class MainViewModel(
     init {
         detailKategori.value = ""
         pesan.value = ""
-        getData()
     }
 
     fun getData() {
+        loading.value = true
         viewModelScope.launch {
             try {
                 val response = repository.getData(
-                    "",
+                    detailKategori.value!!,
                     1,
                     ""
                 )
                 berita.value = response
+                loading.value = false
             } catch (e: Exception) {
                 pesan.value = e.message.toString()
             }

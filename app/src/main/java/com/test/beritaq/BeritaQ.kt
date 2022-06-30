@@ -4,8 +4,8 @@ import android.app.Application
 import androidx.appcompat.app.AppCompatDelegate
 import com.test.beritaq.source.berita.repositoryModule
 import com.test.beritaq.source.network.networkModule
-import com.test.beritaq.source.ui.home.mainModule
-import com.test.beritaq.source.ui.home.mainViewModel
+import com.test.beritaq.ui.home.mainModule
+import com.test.beritaq.ui.home.mainViewModel
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin

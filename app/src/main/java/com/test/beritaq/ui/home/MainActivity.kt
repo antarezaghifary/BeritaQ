@@ -1,4 +1,4 @@
-package com.test.beritaq.source.ui.home
+package com.test.beritaq.ui.home
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -9,8 +9,8 @@ import com.test.beritaq.databinding.ActivityMainBinding
 import com.test.beritaq.databinding.CustomToolbarBinding
 import com.test.beritaq.source.berita.ArticlesItem
 import com.test.beritaq.source.berita.CategoryModel
-import com.test.beritaq.source.ui.berita.BeritaAdapter
-import com.test.beritaq.source.ui.berita.CategoryAdapter
+import com.test.beritaq.ui.berita.BeritaAdapter
+import com.test.beritaq.ui.berita.CategoryAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.dsl.module
 
@@ -55,11 +55,15 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         bindingToolbar = binding.toolbar
 
+        binding.lifecycleOwner = this
+        binding.viewModel = viewModel
+
         bindingToolbar.tvTitle.text = viewModel.title
         binding.listCategory.adapter = categoryAdapter
 
         viewModel.detailKategori.observe(this) {
             Log.e("TAG", "detail kategori: ${it}")
+            viewModel.getData()
         }
 
         binding.listBerita.adapter = beritaAdapter

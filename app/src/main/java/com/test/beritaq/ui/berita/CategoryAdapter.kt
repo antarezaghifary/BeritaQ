@@ -1,4 +1,4 @@
-package com.test.beritaq.source.ui.berita
+package com.test.beritaq.ui.berita
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
