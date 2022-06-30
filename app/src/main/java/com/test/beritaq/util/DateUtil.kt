@@ -9,7 +9,7 @@ class DateUtil {
         else {
             val currentFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.getDefault())
             val dateParse = currentFormat.parse(date)
-            val toFormat = SimpleDateFormat("MM, dd, yyyy", Locale.getDefault())
+            val toFormat = SimpleDateFormat("MMM, dd yyyy", Locale.getDefault())
             toFormat.format(dateParse)
         }
     }

@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.widget.NestedScrollView
 import com.test.beritaq.R
 import com.test.beritaq.databinding.ActivityMainBinding
 import com.test.beritaq.databinding.CustomToolbarBinding
@@ -45,6 +46,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun firstLoad() {
         binding.scroll.scrollTo(0, 0)
+        viewModel.page = 1
+        viewModel.total = 1
         viewModel.getData()
     }
 
@@ -98,6 +101,7 @@ class MainActivity : AppCompatActivity() {
 
         viewModel.berita.observe(this) {
             Log.e("TAG", "data berita: ${it.articles}")
+            if (viewModel.page == 1) beritaAdapter.clear()
             binding.imageAlert.visibility = if (it.articles.isEmpty()) View.VISIBLE else View.GONE
             binding.textAlert.visibility = if (it.articles.isEmpty()) View.VISIBLE else View.GONE
             beritaAdapter.addData(it.articles)
@@ -106,6 +110,14 @@ class MainActivity : AppCompatActivity() {
         viewModel.pesan.observe(this) {
             it?.let {
                 Log.e("TAG", "Pesan: ${it}")
+            }
+        }
+
+        binding.scroll.setOnScrollChangeListener { v: NestedScrollView, scrollX, scrollY, oldScrollX, oldScrollY ->
+
+            if (scrollY == v.getChildAt(0)!!.measuredHeight - v.measuredHeight) {
+                if (viewModel.page <= viewModel.total && viewModel.loadMore.value == false)
+                    viewModel.getData()
             }
         }
     }

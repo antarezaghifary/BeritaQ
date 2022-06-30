@@ -8,6 +8,7 @@ import com.test.beritaq.source.berita.BeritasResponse
 import com.test.beritaq.source.berita.CategoryModel
 import kotlinx.coroutines.launch
 import org.koin.dsl.module
+import kotlin.math.ceil
 
 val mainViewModel = module {
     factory {
@@ -33,6 +34,10 @@ class MainViewModel(
         MutableLiveData<Boolean>()
     }
 
+    val loadMore by lazy {
+        MutableLiveData<Boolean>()
+    }
+
     val berita by lazy {
         MutableLiveData<BeritasResponse>()
     }
@@ -43,18 +48,30 @@ class MainViewModel(
     }
 
     var query = ""
+    var page = 1
+    var total = 1
 
     fun getData() {
-        loading.value = true
+
+        if (page > 1) {
+            loadMore.value = true
+        } else {
+            loading.value = true
+        }
+
         viewModelScope.launch {
             try {
                 val response = repository.getData(
                     detailKategori.value!!,
-                    1,
+                    page,
                     query
                 )
                 berita.value = response
+                val totalResult: Double = response.totalResults!! / 20.0
+                total = ceil(totalResult).toInt()
+                page++
                 loading.value = false
+                loadMore.value = false
             } catch (e: Exception) {
                 pesan.value = e.message.toString()
             }

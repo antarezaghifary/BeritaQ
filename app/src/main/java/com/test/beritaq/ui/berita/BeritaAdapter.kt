@@ -38,8 +38,12 @@ class BeritaAdapter(
 
     @SuppressLint("NotifyDataSetChanged")
     fun addData(data: List<ArticlesItem>) {
-        artikels.clear()
         artikels.addAll(data)
+        notifyItemRangeInserted((artikels.size - data.size), data.size)
+    }
+
+    fun clear() {
+        artikels.clear()
         notifyDataSetChanged()
     }
 
