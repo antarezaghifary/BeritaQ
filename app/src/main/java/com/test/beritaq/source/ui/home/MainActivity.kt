@@ -3,10 +3,13 @@ package com.test.beritaq.source.ui.home
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.test.beritaq.databinding.ActivityMainBinding
 import com.test.beritaq.databinding.CustomToolbarBinding
+import com.test.beritaq.source.berita.ArticlesItem
 import com.test.beritaq.source.berita.CategoryModel
+import com.test.beritaq.source.ui.berita.BeritaAdapter
 import com.test.beritaq.source.ui.berita.CategoryAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.dsl.module
@@ -37,6 +40,15 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
+    private val beritaAdapter by lazy {
+        BeritaAdapter(arrayListOf(), object : BeritaAdapter.OnAdapterListener {
+            @SuppressLint("LogNotTimber")
+            override fun onClick(articleModel: ArticlesItem) {
+
+            }
+        })
+    }
+
     @SuppressLint("LogNotTimber")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,8 +62,13 @@ class MainActivity : AppCompatActivity() {
             Log.e("TAG", "detail kategori: ${it}")
         }
 
+        binding.listBerita.adapter = beritaAdapter
+
         viewModel.berita.observe(this) {
-            Log.e("TAG", "data berita: ${it.article}")
+            Log.e("TAG", "data berita: ${it.articles}")
+            binding.imageAlert.visibility = if (it.articles.isEmpty()) View.VISIBLE else View.GONE
+            binding.textAlert.visibility = if (it.articles.isEmpty()) View.VISIBLE else View.GONE
+            beritaAdapter.addData(it.articles)
         }
 
         viewModel.pesan.observe(this) {

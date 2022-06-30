@@ -1,6 +1,6 @@
 package com.test.beritaq.source.network
 
-import com.test.beritaq.source.berita.BeritaModel
+import com.test.beritaq.source.berita.BeritasResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -12,5 +12,5 @@ interface MyApi {
         @Query("category") category: String,
         @Query("page") page: Int,
         @Query("q") q: String,
-    ): BeritaModel
+    ): BeritasResponse
 }

@@ -34,7 +34,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/container"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="2 deputies shot outside Salt Lake Co. Sheriff's Office in South Salt Lake - fox13now.com" />
+        tools:text="Lorem ipsum dolor" />
 
     <TextView
         android:id="@+id/tvPublishedAt"
@@ -48,5 +48,5 @@
         app:layout_constraintStart_toStartOf="@+id/tvJudul"
         app:layout_constraintTop_toBottomOf="@+id/tvJudul"
         tools:ignore="SmallSp"
-        tools:text="Mar, 04 2021" />
+        tools:text="Jun, 30 2022" />
 </androidx.constraintlayout.widget.ConstraintLayout>

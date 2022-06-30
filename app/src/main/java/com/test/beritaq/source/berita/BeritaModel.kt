@@ -1,8 +1,8 @@
 package com.test.beritaq.source.berita
 
 data class BeritaModel(
-    val status: String,
-    val totalResults: Int,
+    val status: String?,
+    val totalResults: Int?,
     val article: List<ArticleModel>
 )
 
@@ -13,7 +13,7 @@ data class ArticleModel(
     val description: String?,
     val url: String?,
     val urlToImg: String?,
-    val publishedAt: String,
+    val publishedAt: String?,
     val content: String?
 )
 

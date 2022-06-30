@@ -3,8 +3,8 @@ package com.test.beritaq.source.ui.home
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.test.beritaq.source.berita.BeritaModel
 import com.test.beritaq.source.berita.BeritaRepository
+import com.test.beritaq.source.berita.BeritasResponse
 import com.test.beritaq.source.berita.CategoryModel
 import kotlinx.coroutines.launch
 import org.koin.dsl.module
@@ -30,7 +30,7 @@ class MainViewModel(
     }
 
     val berita by lazy {
-        MutableLiveData<BeritaModel>()
+        MutableLiveData<BeritasResponse>()
     }
 
     init {
@@ -44,12 +44,12 @@ class MainViewModel(
             try {
                 val response = repository.getData(
                     "",
-                    "",
-                    1
+                    1,
+                    ""
                 )
                 berita.value = response
             } catch (e: Exception) {
-                pesan.value = "Terjadi Kesalahan"
+                pesan.value = e.message.toString()
             }
         }
     }

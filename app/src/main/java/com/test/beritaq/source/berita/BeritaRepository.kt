@@ -16,9 +16,9 @@ class BeritaRepository(
 ) {
     suspend fun getData(
         category: String,
-        query: String,
-        page: Int
-    ): BeritaModel {
+        page: Int,
+        query: String
+    ): BeritasResponse {
         return api.getBerita(
             BuildConfig.API_KEY,
             "id",

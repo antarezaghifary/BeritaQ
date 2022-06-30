@@ -33,13 +33,13 @@
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/list_category" />
+        app:layout_constraintTop_toBottomOf="@+id/listCategory" />
 
     <ImageView
-        android:id="@+id/image_alert"
+        android:id="@+id/imageAlert"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        app:layout_constraintBottom_toTopOf="@+id/text_alert"
+        app:layout_constraintBottom_toTopOf="@+id/textAlert"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/progress_top"
@@ -48,7 +48,7 @@
         tools:visibility="visible" />
 
     <TextView
-        android:id="@+id/text_alert"
+        android:id="@+id/textAlert"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -58,7 +58,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/image_alert"
+        app:layout_constraintTop_toBottomOf="@+id/imageAlert"
         tools:ignore="HardcodedText"
         tools:visibility="visible" />
 
@@ -69,10 +69,10 @@
         app:layout_constraintBottom_toTopOf="@+id/progress_bottom"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_alert">
+        app:layout_constraintTop_toBottomOf="@+id/textAlert">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/list_news"
+            android:id="@+id/listBerita"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"

@@ -19,7 +19,7 @@ class BeritaQ : Application() {
         Timber.e(" run base application")
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         startKoin {
-            androidLogger(Level.NONE)
+            androidLogger(Level.ERROR)
             androidContext(this@BeritaQ)
             modules(
                 networkModule,
