@@ -11,7 +11,7 @@
         layout="@layout/custom_toolbar" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/list_category"
+        android:id="@+id/listCategory"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clipToPadding="false"
