@@ -4,9 +4,12 @@ import android.app.Application
 import androidx.appcompat.app.AppCompatDelegate
 import com.test.beritaq.source.berita.repositoryModule
 import com.test.beritaq.source.network.networkModule
+import com.test.beritaq.source.ui.home.mainModule
+import com.test.beritaq.source.ui.home.mainViewModel
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
+import org.koin.core.logger.Level
 import timber.log.Timber
 
 class BeritaQ : Application() {
@@ -16,11 +19,13 @@ class BeritaQ : Application() {
         Timber.e(" run base application")
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         startKoin {
-            androidLogger()
+            androidLogger(Level.NONE)
             androidContext(this@BeritaQ)
             modules(
                 networkModule,
-                repositoryModule
+                repositoryModule,
+                mainViewModel,
+                mainModule
             )
         }
     }
