@@ -1,6 +1,7 @@
 package com.test.beritaq.ui.home
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -11,6 +12,7 @@ import com.test.beritaq.source.berita.ArticlesItem
 import com.test.beritaq.source.berita.CategoryModel
 import com.test.beritaq.ui.berita.BeritaAdapter
 import com.test.beritaq.ui.berita.CategoryAdapter
+import com.test.beritaq.ui.detail.DetailActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.dsl.module
 
@@ -44,7 +46,9 @@ class MainActivity : AppCompatActivity() {
         BeritaAdapter(arrayListOf(), object : BeritaAdapter.OnAdapterListener {
             @SuppressLint("LogNotTimber")
             override fun onClick(articleModel: ArticlesItem) {
-
+                val intent = Intent(this@MainActivity, DetailActivity::class.java)
+                intent.putExtra("intent_data", articleModel.url)
+                startActivity(intent)
             }
         })
     }
