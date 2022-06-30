@@ -5,7 +5,7 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface MyApi {
-    @GET("")
+    @GET("top-headlines")
     suspend fun getBerita(
         @Query("apiKey") apiKey: String,
         @Query("country") country: String,
