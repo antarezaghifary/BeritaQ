@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import com.test.beritaq.R
 import com.test.beritaq.databinding.ActivityMainBinding
 import com.test.beritaq.databinding.CustomToolbarBinding
 import com.test.beritaq.source.berita.ArticlesItem
@@ -42,6 +43,11 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
+    private fun firstLoad() {
+        binding.scroll.scrollTo(0, 0)
+        viewModel.getData()
+    }
+
     private val beritaAdapter by lazy {
         BeritaAdapter(arrayListOf(), object : BeritaAdapter.OnAdapterListener {
             @SuppressLint("LogNotTimber")
@@ -58,6 +64,24 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         bindingToolbar = binding.toolbar
+        bindingToolbar.containerBar.inflateMenu(R.menu.search_menu)
+        val menu = binding.toolbar.containerBar.menu
+        val search = menu.findItem(R.id.searchView)
+        val searchView = search.actionView as androidx.appcompat.widget.SearchView
+
+        searchView.setOnQueryTextListener(object :
+            androidx.appcompat.widget.SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(p0: String?): Boolean {
+                firstLoad()
+                return true
+            }
+
+            override fun onQueryTextChange(p0: String?): Boolean {
+                p0?.let { viewModel.query = it }
+                return true
+            }
+
+        })
 
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
@@ -67,7 +91,7 @@ class MainActivity : AppCompatActivity() {
 
         viewModel.detailKategori.observe(this) {
             Log.e("TAG", "detail kategori: ${it}")
-            viewModel.getData()
+            firstLoad()
         }
 
         binding.listBerita.adapter = beritaAdapter

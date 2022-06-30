@@ -42,6 +42,8 @@ class MainViewModel(
         pesan.value = ""
     }
 
+    var query = ""
+
     fun getData() {
         loading.value = true
         viewModelScope.launch {
@@ -49,7 +51,7 @@ class MainViewModel(
                 val response = repository.getData(
                     detailKategori.value!!,
                     1,
-                    ""
+                    query
                 )
                 berita.value = response
                 loading.value = false
