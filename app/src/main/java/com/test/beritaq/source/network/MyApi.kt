@@ -1,6 +1,6 @@
 package com.test.beritaq.source.network
 
-import com.test.beritaq.source.BeritaModel
+import com.test.beritaq.source.berita.BeritaModel
 import retrofit2.http.GET
 import retrofit2.http.Query
 

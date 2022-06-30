@@ -2,6 +2,7 @@ package com.test.beritaq
 
 import android.app.Application
 import androidx.appcompat.app.AppCompatDelegate
+import com.test.beritaq.source.berita.repositoryModule
 import com.test.beritaq.source.network.networkModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -19,6 +20,7 @@ class BeritaQ : Application() {
             androidContext(this@BeritaQ)
             modules(
                 networkModule,
+                repositoryModule
             )
         }
     }

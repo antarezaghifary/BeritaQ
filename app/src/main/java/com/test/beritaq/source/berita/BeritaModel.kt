@@ -1,4 +1,4 @@
-package com.test.beritaq.source
+package com.test.beritaq.source.berita
 
 data class BeritaModel(
     val status: String,
